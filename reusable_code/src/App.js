@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      x: 1,
+      y: 1,
+    };
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+  }
+  handleMouseMove(e) {
+    this.setState({ x: e.clientX, y: e.clientY });
+  }
+  render() {
+    return (
+      <div onMouseMove={this.handleMouseMove} style={{ height: "100vh" }}>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          the cordination of mouse pointer. x:{this.state.x}, y:{this.state.y}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
